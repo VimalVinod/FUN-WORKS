@@ -96,6 +96,17 @@
             font-weight: bold;
             color: #ffffff;
         }
+
+        /* Footer styling */
+        footer {
+            margin-top: 20px;
+            color: #ffffff;
+            font-size: 0.9em;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -143,7 +154,15 @@
 
             document.getElementById("result").innerText = `Your relationship is: ${flames[0]}`;
         }
+
+        // Display the current year in the footer
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+
+    <!-- Footer with trademark -->
+    <footer>
+        © <span id="year"></span> Vimal Vinod™. All rights reserved.
+    </footer>
 
 </body>
 </html>
