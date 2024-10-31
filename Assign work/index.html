@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procrastination Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Procrastination Dashboard</h1>
+        <div id="task-section">
+            <h2>Your Task</h2>
+            <p id="task">Press the button to get a task!</p>
+            <button id="new-task-btn">Get New Task</button>
+        </div>
+        
+        <div id="timer-section">
+            <h2>Timer</h2>
+            <p id="timer">00:00</p>
+            <button id="start-timer-btn">Start Timer</button>
+            <button id="reset-timer-btn">Reset Timer</button>
+        </div>
+        
+        <div id="submission-section">
+            <textarea id="review-input" placeholder="Describe your experience or review..." rows="4"></textarea>
+            <button id="submit-review-btn">Submit Review</button>
+            <p id="evaluation"></p>
+        </div>
+
+        <div id="achievements-section">
+            <h2>Achievements</h2>
+            <ul id="achievements-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
