@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="script.js" defer></script> <!-- Include your script -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Site</h1>
+    </header>
+
+    <main>
+        <h2>Create an Account</h2>
+        
+        <div class="form-container">
+            <div class="form-box">
+                <form id="signupForm" onsubmit="signup(event)"> <!-- Add the signup function -->
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required>
+                    
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" name="confirm_password" id="confirm_password" required>
+                    
+                    <button type="submit">Sign Up</button>
+                </form>
+                
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
