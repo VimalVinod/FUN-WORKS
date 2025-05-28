@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Something To Say</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to bottom right, #ffe3ec, #d0eafc);
+      color: #333;
+      overflow: hidden;
+    }
+
+    .section {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    .typewriter {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5em;
+      border-right: 0.15em solid #000;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 28ch }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #000 }
+    }
+
+    video {
+      width: 90%;
+      max-width: 720px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .message {
+      font-size: 1.8em;
+      animation: slideIn 1.5s ease-in;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .headphone-warning {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #c14468;
+      margin-top: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .emoji {
+      font-size: 2rem;
+      margin: 1rem 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 600px) {
+      .typewriter {
+        font-size: 1.5em;
+      }
+      .message {
+        font-size: 1.2em;
+      }
+      .emoji {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="section active" id="page1">
+    <div class="typewriter">Do you have anything to say? 💬</div>
+  </div>
+
+  <div class="section" id="page2">
+    <div class="emoji">💖✨🎥</div>
+    <video id="video1" controls autoplay>
+      <source src="VDO.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="section" id="page3">
+    <div class="message">Okay... maybe it's time to say everything 💌</div>
+  </div>
+
+  <div class="section" id="page4">
+    <div class="headphone-warning">Please wear your headphones 🎧</div>
+    <div class="emoji">🎶💓🎧</div>
+  </div>
+
+  <div class="section" id="page5">
+    <video id="video2" controls autoplay>
+      <source src="VDO2.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="section" id="page6">
+    <div class="message">Okay... now it’s your turn 😏💭</div>
+    <div class="emoji">✍️💬❤️</div>
+  </div>
+
+  <script>
+    const pages = ["page1", "page2", "page3", "page4", "page5", "page6"];
+    let current = 0;
+
+    function showNextPage() {
+      if (current < pages.length - 1) {
+        document.getElementById(pages[current]).classList.remove("active");
+        current++;
+        document.getElementById(pages[current]).classList.add("active");
+      }
+    }
+
+    setTimeout(showNextPage, 5000); // from typewriter to video1
+
+    const video1 = document.getElementById("video1");
+    video1.muted = false;
+    video1.onended = () => {
+      showNextPage(); // page3 message
+      setTimeout(() => {
+        showNextPage(); // page4 headphone warning
+        setTimeout(() => {
+          showNextPage(); // page5 video2
+        }, 3000);
+      }, 2000);
+    };
+
+    const video2 = document.getElementById("video2");
+    video2.muted = false;
+    video2.onended = () => {
+      showNextPage(); // page6 final message
+    };
+  </script>
+</body>
+</html>
