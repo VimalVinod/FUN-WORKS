@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechQuest</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    input[type="text"], input[type="radio"], button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .quiz-section, .crypto-section, .form-section {
+      display: none;
+    }
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #512da8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Level 1 -->
+  <div class="container" id="level1">
+    <h1>TechQuest: Level 1</h1>
+    <p><strong>Clue:</strong> "Primes unfold in secret harmony"</p>
+    <p>Enter the correct answer to proceed to Level 2.</p>
+    <input type="text" id="answer1" placeholder="Your answer">
+    <button onclick="checkLevel1()">Submit</button>
+    <div class="message" id="message1"></div>
+  </div>
+
+  <!-- Level 2 -->
+  <div class="container quiz-section" id="level2">
+    <h1>TechQuest: Level 2</h1>
+    <p><strong>Clue:</strong> "STEM your curiosity"</p>
+    <form id="quizForm">
+      <p>1. Which Indian woman started as a brewer and later became a famous biotech entrepreneur?</p>
+      <input type="text" name="q1">
+      <p>2. Who is the only person to win Nobel Prizes in both Physics and Chemistry?</p>
+      <input type="text" name="q2">
+      <p>3. What insect was found inside an early computer, leading to the word “debugging”?</p>
+      <input type="text" name="q3">
+      <p>4. Who is the youngest Nobel Peace Prize winner from Pakistan, known for fighting for girls’ education?</p>
+      <input type="text" name="q4">
+      <p>5. Which woman studied radioactivity but wasn't allowed to teach at a university because she was a woman?</p>
+      <input type="text" name="q5">
+      <p>6. Who created the COBOL programming language and worked for the U.S. Navy?</p>
+      <input type="text" name="q6">
+      <p>7. What machine did Rosalind Franklin use to take the famous Photo 51 of DNA?</p>
+      <input type="text" name="q7">
+      <p>8. She was the first Indian-born woman to go to space and became a symbol of courage and dreams in STEM. Who is she?</p>
+      <input type="text" name="q8">
+      <p>9. Name the woman who won the 2023 Nobel Prize in Physics.</p>
+      <input type="text" name="q9">
+      <p>10. What do you think a company called “STEMinist” would do?</p>
+      <input type="text" name="q10">
+      <button type="button" onclick="checkQuiz()">Submit Quiz</button>
+    </form>
+    <div class="message" id="quizMessage"></div>
+    <div class="message" id="quizKey"></div>
+  </div>
+
+  <!-- Level 3 -->
+  <div class="container crypto-section" id="level3">
+    <h1>TechQuest: Level 3</h1>
+    <p><strong>Clue:</strong> "Hidden patterns reveal the key"</p>
+    <p>Decrypt the following Caesar Cipher message (shift: 3):</p>
+    <p><em>vhfuhwnhbh</em></p>
+    <p>Enter your decrypted answer to proceed to Level 4.</p>
+    <input type="text" id="answer3" placeholder="Decrypted word">
+    <button onclick="checkLevel3()">Submit</button>
+    <div class="message" id="message3"></div>
+  </div>
+
+  <!-- Level 4 -->
+  <div class="container form-section" id="level4">
+    <h1>TechQuest: Final Level</h1>
+    <p>You're almost there! Click the button below to access the final form.</p>
+    <a href="https://forms.gle/" target="_blank">
+      <button>Go to Final Submission</button>
+    </a>
+  </div>
+
+  <script>
+    function checkLevel1() {
+      const input = document.getElementById('answer1').value.trim().toLowerCase();
+      if (input === "123") {
+        document.getElementById('message1').style.color = "green";
+        document.getElementById('message1').innerText = "Correct! Proceeding to Level 2...";
+        setTimeout(() => {
+          document.getElementById('level1').style.display = 'none';
+          document.getElementById('level2').style.display = 'block';
+        }, 1500);
+      } else {
+        document.getElementById('message1').style.color = "red";
+        document.getElementById('message1').innerText = "Incorrect. Try again.";
+      }
+    }
+
+    function checkQuiz() {
+      const form = document.getElementById('quizForm');
+      const formData = new FormData(form);
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        if ((formData.get('q' + i) || '').trim() === "123") {
+          score++;
+        }
+      }
+      const msg = document.getElementById('quizMessage');
+      const keyMsg = document.getElementById('quizKey');
+      if (score >= 7) {
+        msg.style.color = 'green';
+        msg.innerText = `You scored ${score}/10.`;
+        keyMsg.style.color = 'blue';
+        keyMsg.innerText = `Use this key to unlock Level 3: secretnet`;
+        setTimeout(() => {
+          document.getElementById('level2').style.display = 'none';
+          document.getElementById('level3').style.display = 'block';
+        }, 3000);
+      } else {
+        msg.style.color = 'red';
+        msg.innerText = `You scored ${score}/10. You need at least 7 correct to proceed.`;
+        keyMsg.innerText = '';
+      }
+    }
+
+    function checkLevel3() {
+      const input = document.getElementById('answer3').value.trim().toLowerCase();
+      if (input === "123") {
+        document.getElementById('message3').style.color = 'green';
+        document.getElementById('message3').innerText = "Correct! Proceeding to Final Level...";
+        setTimeout(() => {
+          document.getElementById('level3').style.display = 'none';
+          document.getElementById('level4').style.display = 'block';
+        }, 2000);
+      } else {
+        document.getElementById('message3').style.color = 'red';
+        document.getElementById('message3').innerText = "Incorrect. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
